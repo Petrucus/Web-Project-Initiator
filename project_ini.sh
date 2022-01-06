@@ -26,6 +26,23 @@ touch $full_path/index.html
 touch $full_path/css/style.css
 touch $full_path/js/script.js
 
+# setting up index.html
+cat << EOF > index.html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="icon" href="img/caticon.png">
+        <link rel="stylesheet" href="/css/style.css" media="all">
+        <title>$1</title>
+    </head>
+</html>
+EOF
+
+# adding in imgs + fonts
+wget https://www.freefavicon.com/freefavicons/animal/cat--5-152-85909.png -O $full_path/img/caticon.png
+
 echo "Project $1 folders have been created"
 
 # use tree to display and confirm folder-file structure
