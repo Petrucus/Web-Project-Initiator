@@ -60,7 +60,7 @@ echo -e "and moving it to \e[4mC:\Program Files\Git\usr\'bin'\e[0m"
 curl -X POST -u $github_access_token:x-oauth-basic https://api.github.com/user/repos -d "{\"name\":\"$project_name\", \"private\": true}"
 
 # Setting up the repo README
-echo "# $project_name"|sed 's/_/ /g' > $full_path/README.md
+echo "# $project_name"|tr "_-" " " > $full_path/README.md
 cd $full_path
 
 # Initializing the repo locally
