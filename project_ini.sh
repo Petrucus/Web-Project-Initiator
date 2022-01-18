@@ -90,7 +90,8 @@ curl -X POST \
  -u $github_access_token:x-oauth-basic \
  -H "Accept: application/vnd.github.v3+json" \
  https://api.github.com/repos/$owner/$repo_name/forks
-	
+
+cd $full_path
 git clone https://github.com/Petrucus/$repo_name.git
 
 } 
