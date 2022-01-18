@@ -1,12 +1,18 @@
 #!/bin/bash -e # The -e flag instructs the script to exit on error
 
+# debug output, uncomment to use
+#set -x
+
 # The directory I choose to store all my SHA projects
 directory_to_use="/c/Users/pesy/OneDrive/Documents/SHA_FE"
 
 echo "Is that a new project or are we just forking ?"
 echo -e "1. New Project\n2. Fork\n"
+
+# Decision input 
 read -p ":" answer
 
+##### Creating a new project #####
 [[ answer -eq 1 ]] && { \
 
 read -p "Project name: " project_name
@@ -18,9 +24,6 @@ echo "Creating project $project_name in $directory_to_use"
 
 # Confirming everything looks good so far
 read -p "Press enter to continue" gogo
-
-# debug output
-set -x
 
 # folder creation
 mkdir -p $full_path
@@ -63,7 +66,9 @@ echo -e "and moving it to \e[4mC:\Program Files\Git\usr\'bin'\e[0m"
 # API POST call to github, to create a repo. Needs access token
 # To create a token see: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
 # To read more about github api calls see: https://docs.github.com/en/rest/guides/getting-started-with-the-rest-api
-curl -X POST -u $github_access_token:x-oauth-basic https://api.github.com/user/repos -d "{\"name\":\"$project_name\", \"private\": true}"
+{ [[ -n $github_access_token ]] && \ 
+ curl -X POST -u $github_access_token:x-oauth-basic https://api.github.com/user/repos -d "{\"name\":\"$project_name\", \"private\": true}" ; } \
+ || { echo "No github access token !\nPlease read comments on how you can setup one" && exit 66 ;} 
 
 # Setting up the repo README
 echo "# $project_name"|tr "_-" " " > $full_path/README.md
@@ -81,7 +86,10 @@ git push -u origin main
 
 }
 
+
+##### Forking #####
 [[ answer -eq 2 ]] && { \
+
 
 read -p "Owner: " owner
 read -p "Repo name: " repo_name
