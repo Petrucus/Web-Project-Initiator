@@ -3,6 +3,12 @@
 # The directory I choose to store all my SHA projects
 directory_to_use="/c/Users/pesy/OneDrive/Documents/SHA_FE"
 
+echo "Is that a new project or are we just forking ?"
+echo -e "1. New Project\n2. Fork\n"
+read -p ":" answer
+
+[[ answer -eq 1 ]] && { \
+
 read -p "Project name: " project_name
 
 # The directory of the project itself
@@ -72,3 +78,21 @@ git commit -m "first commit"
 git branch -M main
 git remote add origin https://github.com/Petrucus/$project_name.git
 git push -u origin main
+
+}
+
+[[ answer -eq 2 ]] && { \
+
+read -p "Owner: " owner
+read -p "Repo name: " repo_name
+
+curl -X POST \
+ -u $github_access_token:x-oauth-basic \
+ -H "Accept: application/vnd.github.v3+json" \
+ https://api.github.com/repos/$owner/$repo_name/forks
+	
+git clone https://github.com/Petrucus/$repo_name.git
+
+} 
+
+[[ !$? ]] && echo -e "\n1 or 2, make a call\n"
