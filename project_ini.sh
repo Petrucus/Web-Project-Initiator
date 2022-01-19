@@ -6,6 +6,11 @@
 # the directory I choose to store all my SHA projects
 directory_to_use="/c/Users/pesy/OneDrive/Documents/SHA_FE"
 
+read -p "Project name: " project_name
+
+# the directory of the project itself
+full_path="$directory_to_use/$project_name"
+
 echo "Is that a new project or are we just forking ?"
 echo -e "1. New Project\n2. Fork\n"
 
@@ -14,11 +19,6 @@ read -p ":" answer
 
 ##### Creating a new project #####
 [[ answer -eq 1 ]] && { \
-
-read -p "Project name: " project_name
-
-# the directory of the project itself
-full_path="$directory_to_use/$project_name"
 
 echo "Creating project $project_name in $directory_to_use"
 
@@ -94,6 +94,11 @@ git push -u origin main
 read -p "Owner: " owner
 read -p "Repo name: " repo_name
 
+echo "Forking project $repo_name"
+
+# confirming everything looks good so far
+read -p "Press enter to continue" gogo
+
 # API POST call to github, to fork repo. Needs access token
 curl -X POST \
  -u $github_access_token:x-oauth-basic \
@@ -101,6 +106,11 @@ curl -X POST \
  https://api.github.com/repos/$owner/$repo_name/forks
 
 cd $full_path
+
+echo "Cloning project $repo_name in $directory_to_use"
+
+# confirming everything looks good so far
+read -p "Press enter to continue" gogo
 
 # cloning the repo to local
 git clone https://github.com/Petrucus/$repo_name.git
