@@ -3,13 +3,13 @@
 # debug output, uncomment to use
 #set -x
 
-# The directory I choose to store all my SHA projects
+# the directory I choose to store all my SHA projects
 directory_to_use="/c/Users/pesy/OneDrive/Documents/SHA_FE"
 
 echo "Is that a new project or are we just forking ?"
 echo -e "1. New Project\n2. Fork\n"
 
-# Decision input 
+# decision input 
 read -p ":" answer
 
 ##### Creating a new project #####
@@ -17,12 +17,12 @@ read -p ":" answer
 
 read -p "Project name: " project_name
 
-# The directory of the project itself
+# the directory of the project itself
 full_path="$directory_to_use/$project_name"
 
 echo "Creating project $project_name in $directory_to_use"
 
-# Confirming everything looks good so far
+# confirming everything looks good so far
 read -p "Press enter to continue" gogo
 
 # folder creation
@@ -64,20 +64,20 @@ echo -e "or downloading \e[4mhttp://downloads.sourceforge.net/gnuwin32/tree-1.5.
 echo -e "and moving it to \e[4mC:\Program Files\Git\usr\'bin'\e[0m"
 
 # API POST call to github, to create a repo. Needs access token
-# To create a token see: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
-# To read more about github api calls see: https://docs.github.com/en/rest/guides/getting-started-with-the-rest-api
+# to create a token see: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+# to read more about github api calls see: https://docs.github.com/en/rest/guides/getting-started-with-the-rest-api
 { [[ -n $github_access_token ]] && \ 
  curl -X POST -u $github_access_token:x-oauth-basic https://api.github.com/user/repos -d "{\"name\":\"$project_name\", \"private\": true}" ; } \
  || { echo "No github access token !\nPlease read comments on how you can setup one" && exit 66 ;} 
 
-# Setting up the repo README
+# setting up the repo README
 echo "# $project_name"|tr "_-" " " > $full_path/README.md
 cd $full_path
 
-# Initializing the repo locally
+# initializing the repo locally
 git init
 
-# Adding, commiting and pushing the changes from local to remote
+# adding, commiting and pushing the changes from local to remote
 git add .
 git commit -m "first commit"
 git branch -M main
@@ -94,14 +94,18 @@ git push -u origin main
 read -p "Owner: " owner
 read -p "Repo name: " repo_name
 
+# API POST call to github, to fork repo. Needs access token
 curl -X POST \
  -u $github_access_token:x-oauth-basic \
  -H "Accept: application/vnd.github.v3+json" \
  https://api.github.com/repos/$owner/$repo_name/forks
 
 cd $full_path
+
+# cloning the repo to local
 git clone https://github.com/Petrucus/$repo_name.git
 
 } 
 
+# Checking if last commands exit code was NOT true
 [[ !$? ]] && echo -e "\n1 or 2, make a call\n"
