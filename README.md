@@ -26,3 +26,4 @@ https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/c
 - Create environment variables for
   - github_access_token = YOUR_GITHUB_TOKEN
   - directory_to_use = PATH_TO_USE_IN_UNIX_SYNTAX
+- Edit `Petrucus` within the script to match your own github account
