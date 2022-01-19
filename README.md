@@ -1,5 +1,5 @@
 # Web Project Initiator
-
+[![Join the chat at https://gitter.im/Petrucus/Web-Project-Initiator](https://badges.gitter.im/Petrucus/Web-Project-Initiator.svg)](https://gitter.im/Petrucus/Web-Project-Initiator?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ### What is Web Project Initiator?
 
 WPI is a bash script that tries to automate some of the most boring and repetitive work needed during the Web Dev course I follow. The aim is to be a simple and focused on what is needed for the use-case.
@@ -7,7 +7,6 @@ WPI is a bash script that tries to automate some of the most boring and repetiti
 For now the use-case is limited into two things. Fork repos to work on them and creating new repos/projects all-together.
 
 All these are to be accomplished using Github.
-
 
 ### How do I use it?
 - Create a Github account
