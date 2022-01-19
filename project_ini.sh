@@ -94,7 +94,7 @@ git push -u origin main
 read -p "Owner: " owner
 read -p "Repo name: " repo_name
 
-echo "Forking project $repo_name"
+echo -e "\n Forking project $repo_name \n"
 
 # confirming everything looks good so far
 read -p "Press enter to continue" gogo
@@ -105,9 +105,9 @@ curl -X POST \
  -H "Accept: application/vnd.github.v3+json" \
  https://api.github.com/repos/$owner/$repo_name/forks
 
-cd $full_path
+cd $directory_to_use
 
-echo "Cloning project $repo_name in $directory_to_use"
+echo "Cloning project $repo_name in $directory_to_use - $(pwd))"
 
 # confirming everything looks good so far
 read -p "Press enter to continue" gogo
