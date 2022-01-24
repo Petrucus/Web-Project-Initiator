@@ -31,6 +31,7 @@ mkdir -p $full_path/css
 mkdir -p $full_path/js
 mkdir -p $full_path/img
 mkdir -p $full_path/fonts
+mkdir -p $full_path/pages
 
 # file creation
 touch $full_path/index.html
