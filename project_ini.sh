@@ -22,6 +22,7 @@ function project_creator() {
     touch $full_path/index.html
     touch $full_path/css/style.css
     touch $full_path/js/script.js
+    touch $full_path/robots.txt
 
     # setting up index.html
     cat << EOF > $full_path/index.html
@@ -37,6 +38,32 @@ function project_creator() {
         </head>
     </html>
 EOF
+
+    # setting up robots.txt
+    cat << EOF > $full_path/robots.txt
+    # https://www.robotstxt.org/robotstxt.html
+    User-agent: *
+    Disallow:
+EOF
+
+    # setting up style.css
+    cat << EOF > $full_path/css/style.css
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {...}
+
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 600px) {...}
+
+    /* Medium devices (landscape tablets, 768px and up) */
+    @media only screen and (min-width: 768px) {...}
+
+    /* Large devices (laptops/desktops, 992px and up) */
+    @media only screen and (min-width: 992px) {...}
+
+    /* Extra large devices (large laptops and desktops, 1200px and up) */
+    @media only screen and (min-width: 1200px) {...}
+EOF
+
 
     # adding in imgs + fonts
     curl https://www.freefavicon.com/freefavicons/animal/cat--5-152-85909.png --output $full_path/img/caticon.png
