@@ -134,7 +134,7 @@ function project_forker() {
 }
 
 # the directory I choose to store all my SHA projects
-directory_to_use="/c/Users/pesy/OneDrive/Documents/SHA_FE"
+directory_to_use="/home/admin/Documents/SHA_FE"
 
 read -p "Project name: " project_name
 
