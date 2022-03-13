@@ -33,9 +33,17 @@ function project_creator() {
             <meta name="viewport" content="width=device-width,initial-scale=1.0">
             <meta name=description content="$project_name">
             <link rel="icon" href="img/caticon.png">
+	    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
             <link rel="stylesheet" href="/css/style.css" media="all">
-            <title>$(cat $project_name|tr "-_" " ")</title>
+            <title>$(echo $project_name|tr "-_" " ")</title>
         </head>
+
+        <body>
+		<!-- Start coding here -->
+
+		<!-- Stop coding here -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	</body>
     </html>
 EOF
 
@@ -49,19 +57,17 @@ EOF
     # setting up style.css
     cat << EOF > $full_path/css/style.css
     /* Extra small devices (phones, 600px and down) */
-    @media only screen and (max-width: 600px) {...}
+    @media only screen and (max-width: 600px) {}
 
     /* Small devices (portrait tablets and large phones, 600px and up) */
-    @media only screen and (min-width: 600px) {...}
+    @media only screen and (min-width: 600px) {}
 
     /* Medium devices (landscape tablets, 768px and up) */
-    @media only screen and (min-width: 768px) {...}
+    @media only screen and (min-width: 768px) {}
 
     /* Large devices (laptops/desktops, 992px and up) */
-    @media only screen and (min-width: 992px) {...}
+    @media only screen and (min-width: 992px) {}
 
-    /* Extra large devices (large laptops and desktops, 1200px and up) */
-    @media only screen and (min-width: 1200px) {...}
 EOF
 
 
